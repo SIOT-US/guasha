@@ -130,6 +130,12 @@
     💌 <b>Ready to submit?</b> Send as a <b>draft email</b> to <b>tiktokshop@thesiot.us</b>
   </footer>
 </div>
+  const ASSETS = {
+  thighs: { hook: 'assets/thighs-hook.mp4', apply: 'assets/thighs-apply.png', after: 'assets/thighs-after.png' },
+  belly: { hook: 'assets/belly-hook.mp4', apply: 'assets/belly-apply.png', after: 'assets/belly-after.png' },
+  waistline: { hook: 'assets/waistline-hook.mp4', apply: 'assets/waistline-apply.png', after: 'assets/waistline-after.png' },
+  'upper-arms': { hook: 'assets/upper-arms-hook.mp4', apply: 'assets/upper-arms-apply.png', after: 'assets/upper-arms-after.png' },
+};
 <script>
   const PARTS = [
     { id: "thighs", label: "Thighs", icon: "🌿" },
@@ -162,7 +168,30 @@
       btn.addEventListener("click", () => {
         selectedPart = p.id;
         renderParts();
-        renderPhotos();
+        function renderPhotos() {
+  if (selectedPart) {
+    const asset = ASSETS[selectedPart];
+    if (asset && asset.hook) {
+      hookVideo.src = asset.hook;
+    }
+    if (asset && asset.apply) {
+      const img = new Image();
+      img.src = asset.apply;
+      applyPhoto.innerHTML = '';
+      applyPhoto.appendChild(img);
+    }
+    if (asset && asset.after) {
+      const img = new Image();
+      img.src = asset.after;
+      afterPhoto.innerHTML = '';
+      afterPhoto.appendChild(img);
+    }
+  } else {
+    hookVideo.src = "";
+    applyPhoto.innerHTML = `<div class="photo-placeholder">Pick an area</div>`;
+    afterPhoto.innerHTML = `<div class="photo-placeholder">Pick an area</div>`;
+  }
+}
         renderReq();
         updateHookCaption();
       });
