@@ -60,6 +60,7 @@
     margin-bottom: 8px; flex-shrink: 0; background: rgba(0, 0, 0, 0.03);
     display: flex; align-items: center; justify-content: center; }
   .mission-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .mission-photo video { width: 100%; height: 100%; object-fit: cover; display: block; }
   .photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
     border: 1.5px dashed var(--line); border-radius: 8px; background: rgba(0, 0, 0, 0.03);
     font-size: 10.5px; color: var(--ink-soft); text-align: center; padding: 6px; }
@@ -102,7 +103,7 @@
   <div class="mission-grid">
     <div class="mission-card mission-card--hook">
       <span class="mission-step">Hook</span>
-      <video id="hookVideo" class="mission-video" autoplay muted playsinline controls></video>
+      <div class="mission-photo" id="hookPhoto"><div class="photo-placeholder">Pick an area</div></div>
       <p class="mission-caption" id="hookCaption">Select an area to see the hook guide.</p>
     </div>
     <div class="mission-card mission-card--text">
@@ -131,12 +132,12 @@
 </div>
 
 <script>
-   const ASSETS = {
-  thighs: { hook: 'assets/thighs-hook.png', apply: 'assets/thighs-apply.mp4', after: 'assets/thighs-after.png' },
-  belly: { hook: 'assets/belly-hook.mp4', apply: 'assets/belly-apply.mp4', after: 'assets/belly-after.png' },
-  waistline: { hook: 'assets/waistline-hook.mp4', apply: 'assets/waistline-apply.mp4', after: 'assets/waistline-after.png' },
-  'upper-arms': { hook: 'assets/upper-arms-hook.png', apply: 'assets/upper-arms-apply.mp4', after: 'assets/upper-arms-after.png' }
-};
+  const ASSETS = {
+    thighs: { hook: 'assets/thighs-hook.png', apply: 'assets/thighs-apply.mp4', after: 'assets/thighs-after.png' },
+    belly: { hook: 'assets/belly-hook.mp4', apply: 'assets/belly-apply.mp4', after: 'assets/belly-after.png' },
+    waistline: { hook: 'assets/waistline-hook.mp4', apply: 'assets/waistline-apply.mp4', after: 'assets/waistline-after.png' },
+    'upper-arms': { hook: 'assets/upper-arms-hook.png', apply: 'assets/upper-arms-apply.mp4', after: 'assets/upper-arms-after.png' }
+  };
 
   const PARTS = [
     { id: "thighs", label: "Thighs", icon: "🌿" },
@@ -153,7 +154,7 @@
   };
 
   const partGrid = document.getElementById("partGrid");
-  const hookVideo = document.getElementById("hookVideo");
+  const hookPhoto = document.getElementById("hookPhoto");
   const applyPhoto = document.getElementById("applyPhoto");
   const afterPhoto = document.getElementById("afterPhoto");
   const reqCard = document.getElementById("reqCard");
@@ -179,7 +180,7 @@
 
   function renderPhotos() {
     if (!selectedPart) {
-      hookVideo.src = "";
+      hookPhoto.innerHTML = `<div class="photo-placeholder">Pick an area</div>`;
       applyPhoto.innerHTML = `<div class="photo-placeholder">Pick an area</div>`;
       afterPhoto.innerHTML = `<div class="photo-placeholder">Pick an area</div>`;
       return;
@@ -188,8 +189,23 @@
     const assets = ASSETS[selectedPart];
     if (!assets) return;
 
-    hookVideo.src = assets.hook;
+    // Hook - Handle both image and video
+    hookPhoto.innerHTML = "";
+    if (assets.hook.endsWith('.mp4') || assets.hook.endsWith('.webm')) {
+      const video = document.createElement('video');
+      video.src = assets.hook;
+      video.style.width = '100%';
+      video.style.height = '100%';
+      video.style.objectFit = 'cover';
+      video.controls = true;
+      hookPhoto.appendChild(video);
+    } else {
+      const img = document.createElement('img');
+      img.src = assets.hook;
+      hookPhoto.appendChild(img);
+    }
 
+    // Apply
     applyPhoto.innerHTML = "";
     if (assets.apply.endsWith('.mp4') || assets.apply.endsWith('.webm')) {
       const video = document.createElement('video');
@@ -205,6 +221,7 @@
       applyPhoto.appendChild(img);
     }
 
+    // After
     afterPhoto.innerHTML = "";
     if (assets.after.endsWith('.mp4') || assets.after.endsWith('.webm')) {
       const video = document.createElement('video');
