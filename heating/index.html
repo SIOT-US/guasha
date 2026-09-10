@@ -12,7 +12,6 @@
     --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", monospace;
   }
-
   * { box-sizing: border-box; } html, body { margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--ink); font-family: var(--font-ui); line-height: 1.55;
     -webkit-font-smoothing: antialiased; display: flex; justify-content: center; }
@@ -25,9 +24,10 @@
   .hero { padding: 20px 0 4px; margin-top: 10px; }
   section.block { margin-top: 26px; }
   .block-head { margin-bottom: 12px; }
-  .block-title { font-size: 18px; font-weight: 800; margin: 0; text-transform: uppercase;
-    letter-spacing: 0.1em; color: var(--brown-strong); }
-  .block-note { font-size: 12.5px; color: var(--ink-soft); margin: 4px 0 0; }
+  .block-title { font-size: 32px; font-weight: 900; margin: 0; text-transform: uppercase;
+    letter-spacing: 0.05em; color: var(--brown-strong); display: block; margin-bottom: 8px; }
+  .block-subtitle { font-size: 14px; font-weight: 600; margin: 0; letter-spacing: 0.08em;
+    color: var(--brown); text-transform: uppercase; }
   .part-grid { display: flex; flex-wrap: wrap; gap: 7px; }
   .part-chip { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
     flex: 1 1 88px; min-width: 88px; padding: 9px 6px; background: var(--card);
@@ -59,6 +59,7 @@
   .mission-photo { width: 100%; height: clamp(150px, 42vw, 210px); border-radius: 8px; overflow: hidden;
     margin-bottom: 8px; flex-shrink: 0; background: rgba(0, 0, 0, 0.03);
     display: flex; align-items: center; justify-content: center; }
+  .mission-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
     border: 1.5px dashed var(--line); border-radius: 8px; background: rgba(0, 0, 0, 0.03);
     font-size: 10.5px; color: var(--ink-soft); text-align: center; padding: 6px; }
@@ -94,16 +95,14 @@
   </div>
   <div class="hero">
     <div class="block-head">
-      <h2 class="block-title" style="font-size: 24px;">
-  <span style="font-size: 32px; font-weight: 900; display: block; margin-bottom: 8px;">HEATING GUIDE</span>
-  <u>Hook – Apply – After</u> Flow
-</h2>
+      <h2 class="block-title">HEATING GUIDE</h2>
+      <div class="block-subtitle">Hook – Apply – After Flow</div>
     </div>
   </div>
   <div class="mission-grid">
     <div class="mission-card mission-card--hook">
       <span class="mission-step">Hook</span>
-      <video id="hookVideo" class="mission-video" autoplay muted playsinline src=""></video>
+      <video id="hookVideo" class="mission-video" autoplay muted playsinline controls></video>
       <p class="mission-caption" id="hookCaption">Select an area to see the hook guide.</p>
     </div>
     <div class="mission-card mission-card--text">
@@ -130,14 +129,15 @@
     💌 <b>Ready to submit?</b> Send as a <b>draft email</b> to <b>tiktokshop@thesiot.us</b>
   </footer>
 </div>
+
 <script>
-const ASSETS = {
-  thighs: { hook: 'assets/thighs-hook.mp4', apply: 'assets/thighs-apply.png', after: 'assets/thighs-after.png' },
-  belly: { hook: 'assets/belly-hook.mp4', apply: 'assets/belly-apply.png', after: 'assets/belly-after.png' },
-  waistline: { hook: 'assets/waistline-hook.mp4', apply: 'assets/waistline-apply.png', after: 'assets/waistline-after.png' },
-  'upper-arms': { hook: 'assets/upper-arms-hook.mp4', apply: 'assets/upper-arms-apply.png', after: 'assets/upper-arms-after.png' }
-};
-</script>
+  const ASSETS = {
+    thighs: { hook: 'assets/thighs-hook.mp4', apply: 'assets/thighs-apply.mp4', after: 'assets/thighs-after.png' },
+    belly: { hook: 'assets/belly-hook.mp4', apply: 'assets/belly-apply.mp4', after: 'assets/belly-after.png' },
+    waistline: { hook: 'assets/waistline-hook.mp4', apply: 'assets/waistline-apply.mp4', after: 'assets/waistline-after.png' },
+    'upper-arms': { hook: 'assets/upper-arms-hook.mp4', apply: 'assets/upper-arms-apply.mp4', after: 'assets/upper-arms-after.png' }
+  };
+
   const PARTS = [
     { id: "thighs", label: "Thighs", icon: "🌿" },
     { id: "belly", label: "Belly", icon: "🌿" },
@@ -169,30 +169,7 @@ const ASSETS = {
       btn.addEventListener("click", () => {
         selectedPart = p.id;
         renderParts();
-        function renderPhotos() {
-  if (selectedPart) {
-    const asset = ASSETS[selectedPart];
-    if (asset && asset.hook) {
-      hookVideo.src = asset.hook;
-    }
-    if (asset && asset.apply) {
-      const img = new Image();
-      img.src = asset.apply;
-      applyPhoto.innerHTML = '';
-      applyPhoto.appendChild(img);
-    }
-    if (asset && asset.after) {
-      const img = new Image();
-      img.src = asset.after;
-      afterPhoto.innerHTML = '';
-      afterPhoto.appendChild(img);
-    }
-  } else {
-    hookVideo.src = "";
-    applyPhoto.innerHTML = `<div class="photo-placeholder">Pick an area</div>`;
-    afterPhoto.innerHTML = `<div class="photo-placeholder">Pick an area</div>`;
-  }
-}
+        renderPhotos();
         renderReq();
         updateHookCaption();
       });
@@ -200,24 +177,48 @@ const ASSETS = {
     });
   }
 
-  function renderStagePhoto(el, stage) {
-    if (!selectedPart) {
-      el.innerHTML = `<div class="photo-placeholder">Pick an area</div>`;
-      return;
-    }
-    el.innerHTML = `<div class="photo-placeholder">Pick an area</div>`;
-  }
-
-  function renderHookVideo() {
+  function renderPhotos() {
     if (!selectedPart) {
       hookVideo.src = "";
+      applyPhoto.innerHTML = `<div class="photo-placeholder">Pick an area</div>`;
+      afterPhoto.innerHTML = `<div class="photo-placeholder">Pick an area</div>`;
+      return;
     }
-  }
 
-  function renderPhotos() {
-    renderHookVideo();
-    renderStagePhoto(applyPhoto, "apply");
-    renderStagePhoto(afterPhoto, "after");
+    const assets = ASSETS[selectedPart];
+    if (!assets) return;
+
+    hookVideo.src = assets.hook;
+
+    applyPhoto.innerHTML = "";
+    if (assets.apply.endsWith('.mp4') || assets.apply.endsWith('.webm')) {
+      const video = document.createElement('video');
+      video.src = assets.apply;
+      video.style.width = '100%';
+      video.style.height = '100%';
+      video.style.objectFit = 'cover';
+      video.controls = true;
+      applyPhoto.appendChild(video);
+    } else {
+      const img = document.createElement('img');
+      img.src = assets.apply;
+      applyPhoto.appendChild(img);
+    }
+
+    afterPhoto.innerHTML = "";
+    if (assets.after.endsWith('.mp4') || assets.after.endsWith('.webm')) {
+      const video = document.createElement('video');
+      video.src = assets.after;
+      video.style.width = '100%';
+      video.style.height = '100%';
+      video.style.objectFit = 'cover';
+      video.controls = true;
+      afterPhoto.appendChild(video);
+    } else {
+      const img = document.createElement('img');
+      img.src = assets.after;
+      afterPhoto.appendChild(img);
+    }
   }
 
   function updateHookCaption() {
