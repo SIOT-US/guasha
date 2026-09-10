@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matcha Catechin Sculpting Gua Sha Cream - Heating Guide</title>
+    <style>
+        :root {
+            --primary-color: #81c784;
+            --dark-color: #2e7d32;
+            --light-bg: #f9f7f4;
+            --text-color: #333;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--light-bg);
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 13px;
+            color: #999;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Main Title */
+        .main-title {
+            text-align: center;
+            font-size: 24px;
+            color: var(--dark-color);
+            margin-bottom: 40px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Flow Display */
+        .flow-display {
+            background: white;
+            border: 3px dashed var(--primary-color);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .flow-boxes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .flow-box {
+            text-align: center;
+        }
+
+        .flow-box-label {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .flow-box-title {
+            font-size: 18px;
+            color: var(--dark-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .flow-box-content {
+            background: #f5f5f5;
+            border: 2px dashed var(--primary-color);
+            border-radius: 10px;
+            padding: 40px 20px;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #ccc;
+        }
+
+        .flow-box-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .info-box {
+            background: #fffde7;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Area Selection */
+        .area-section {
+            margin-bottom: 40px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .area-button {
+            padding: 15px 20px;
+            background: white;
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .area-button:hover {
+            background: #f5f5f5;
+            border-color: var(--primary-color);
+        }
+
+        .area-button.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Content Section */
+        .content-section {
+            display: none;
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 40px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Requirements */
+        .requirements {
+            background: #f5f5f5;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .requirements-title {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .requirement-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .requirement-icon {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 16px;
+        }
+
+        /* Checklist */
+        .checklist {
+            background: #fffde7;
+            border-left: 5px solid #fbc02d;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .checklist-title {
+            font-size: 12px;
+            color: #f57f17;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 15px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: #fbc02d;
+        }
+
+        /* Warning */
+        .warning {
+            background: #ffebee;
+            border-left: 5px solid #c62828;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid var(--border-color);
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .flow-boxes {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .button-group {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">🌿 Siot</div>
+            <h1>Matcha Catechin Sculpting Gua Sha Cream</h1>
+            <p>Heating Guide</p>
+        </div>
+
+        <!-- Main Title -->
+        <div class="main-title">HOOK – APPLY – AFTER FLOW</div>
+
+        <!-- Flow Display -->
+        <div class="flow-display">
+            <div class="flow-boxes">
+                <div class="flow-box">
+                    <div class="flow-box-label">HOOK</div>
+                    <div class="flow-box-title">Select an area to see the hook guide.</div>
+                    <div class="flow-box-content">
+                        <div class="flow-box-icon">📸</div>
+                    </div>
+                </div>
+                <div class="flow-box">
+                    <div class="flow-box-label">APPLY</div>
+                    <div class="flow-box-title">Pick an area</div>
+                    <div class="flow-box-content">
+                        <div class="flow-box-icon">📹</div>
+                        Apply a generous amount to the area.
+                    </div>
+                </div>
+                <div class="flow-box">
+                    <div class="flow-box-label">AFTER</div>
+                    <div class="flow-box-title">Pick an area</div>
+                    <div class="flow-box-content">
+                        <div class="flow-box-icon">📸</div>
+                        Show the lighter, brighter result.
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                Select an area below to see its requirements.
+            </div>
+        </div>
+
+        <!-- Area Selection -->
+        <div class="area-section">
+            <div class="section-label">PROBLEM AREA</div>
+            <div class="section-title">CLICK YOUR AREA</div>
+            <div class="section-subtitle">Tap an area — the guide and requirements below will update to match.</div>
+
+            <div class="button-group">
+                <button class="area-button active" onclick="showContent('thighs')">
+                    🌿 Thighs
+                </button>
+                <button class="area-button" onclick="showContent('belly')">
+                    🌿 Belly
+                </button>
+                <button class="area-button" onclick="showContent('waistline')">
+                    🌿 Waistline
+                </button>
+                <button class="area-button" onclick="showContent('upper-arms')">
+                    🌿 Upper Arms
+                </button>
+            </div>
+
+            <!-- Thighs Content -->
+            <div id="thighs" class="content-section active">
+                <div class="requirements">
+                    <div class="requirements-title">THIGHS REQUIREMENTS</div>
+                    <div class="requirement-item">
+                        <span class="requirement-icon">✓</span>
+                        <span>Requirement 1</span>
+                    </div>
+                    <div class="requirement-item">
+                        <span class="requirement-icon">✓</span>
+                        <span>Requirement 2</span>
+                    </div>
+                    <div class="requirement-item">
+                        <span class="requirement-icon">✓</span>
+                        <span>Requirement 3</span>
+                    </div>
+                </div>
+
+                <div class="checklist">
+                    <div class="checklist-title">📌 QUICK CHECKLIST BEFORE YOU SUBMIT:</div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>HOOK : sweaty / red-face shot recorded</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>APPLY : 1 video filmed on Thighs area</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>AFTER : fat looking reduced and your body line looking more toned/defined</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>Video follows the order : HOOK → APPLY → AFTER</span>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    Since this product is highly effective at reducing cellulite and fat, we don't recommend using it on areas where the skin/fat layer is very thin (face, neck, back of hands, etc.). We recommend doing a patch test before use.
+                </div>
+            </div>
+
+            <!-- Belly Content -->
+            <div id="belly" class="content-section">
+                <div class="requirements">
+                    <div class="requirements-title">BELLY REQUIREMENTS</div>
+                    <div class="requirement-item">
+                        <span class="requirement-icon">✓</span>
+                        <span>Requirement 1</span>
+                    </div>
+                    <div class="requirement-item">
+                        <span class="requirement-icon">✓</span>
+                        <span>Requirement 2</span>
+                    </div>
+                    <div class="requirement-item">
+                        <span class="requirement-icon">✓</span>
+                        <span>Requirement 3</span>
+                    </div>
+                </div>
+
+                <div class="checklist">
+                    <div class="checklist-title">📌 QUICK CHECKLIST BEFORE YOU SUBMIT:</div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>HOOK : sweaty / red-face shot recorded</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>APPLY : 1 video filmed on Belly area</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>AFTER : fat looking reduced and your body line looking more toned/defined</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>Video follows the order : HOOK → APPLY → AFTER</span>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    Since this product is highly effective at reducing cellulite and fat, we don't recommend using it on areas where the skin/fat layer is very thin (face, neck, back of hands, etc.). We recommend doing a patch test before use.
+                </div>
+            </div>
+
+            <!-- Waistline Content -->
+            <div id="waistline" class="content-section">
+                <div class="requirements">
+                    <div class="requirements-title">WAISTLINE REQUIREMENTS</div>
+                    <div class="requirement-item">
+                        <span class="requirement-icon">✓</span>
+                        <span>Requirement 1</span>
+                    </div>
+                    <div class="requirement-item">
+                        <span class="requirement-icon">✓</span>
+                        <span>Requirement 2</span>
+                    </div>
+                    <div class="requirement-item">
+                        <span class="requirement-icon">✓</span>
+                        <span>Requirement 3</span>
+                    </div>
+                </div>
+
+                <div class="checklist">
+                    <div class="checklist-title">📌 QUICK CHECKLIST BEFORE YOU SUBMIT:</div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>HOOK : sweaty / red-face shot recorded</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>APPLY : 1 video filmed on Waistline area</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>AFTER : fat looking reduced and your body line looking more toned/defined</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>Video follows the order : HOOK → APPLY → AFTER</span>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    Since this product is highly effective at reducing cellulite and fat, we don't recommend using it on areas where the skin/fat layer is very thin (face, neck, back of hands, etc.). We recommend doing a patch test before use.
+                </div>
+            </div>
+
+            <!-- Upper Arms Content -->
+            <div id="upper-arms" class="content-section">
+                <div class="requirements">
+                    <div class="requirements-title">UPPER ARMS REQUIREMENTS</div>
+                    <div class="requirement-item">
+                        <span class="requirement-icon">✓</span>
+                        <span>Requirement 1</span>
+                    </div>
+                    <div class="requirement-item">
+                        <span class="requirement-icon">✓</span>
+                        <span>Requirement 2</span>
+                    </div>
+                    <div class="requirement-item">
+                        <span class="requirement-icon">✓</span>
+                        <span>Requirement 3</span>
+                    </div>
+                </div>
+
+                <div class="checklist">
+                    <div class="checklist-title">📌 QUICK CHECKLIST BEFORE YOU SUBMIT:</div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>HOOK : sweaty / red-face shot recorded</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>APPLY : 1 video filmed on Upper Arms area</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>AFTER : fat looking reduced and your body line looking more toned/defined</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>Video follows the order : HOOK → APPLY → AFTER</span>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    Since this product is highly effective at reducing cellulite and fat, we don't recommend using it on areas where the skin/fat layer is very thin (face, neck, back of hands, etc.). We recommend doing a patch test before use.
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            💌 Ready to submit? Send as a draft email to <strong>tiktokshop@thesiot.us</strong>
+        </div>
+    </div>
+
+    <script>
+        function showContent(area) {
+            // Hide all content sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.area-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Show selected content
+            document.getElementById(area).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
