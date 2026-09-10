@@ -1,2 +1,213 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><title>HEATING</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>:root{--bg:#f7f3ea;--card:#fff;--ink:#1e1b16;--brown:#7c4222;--brown-strong:#5e3119;--amber:#e2a63c;--amber-bg:#f5dfb8;--line:#eae3d3;--shadow:0 2px 10px rgba(30,20,10,.07)}.page{max-width:760px;margin:0 auto;padding:24px 20px 60px}.brandbar{display:flex;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid var(--line)}.block-kicker{font-size:11px;font-weight:700;color:var(--brown);text-transform:uppercase}.block-title{font-size:18px;font-weight:800;text-transform:uppercase;color:var(--brown-strong);margin:0}.part-grid{display:flex;flex-wrap:wrap;gap:7px}.part-chip{flex:1 1 88px;padding:9px 6px;background:var(--card);border:1.5px solid var(--line);border-radius:12px;cursor:pointer;font-family:inherit;box-shadow:var(--shadow)}.part-chip:hover{border-color:var(--amber)}.part-chip.is-selected{border-color:var(--brown);background:var(--amber-bg)}.mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:14px}.mission-card{border-radius:14px;padding:12px 8px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center}.mission-card--hook{background:var(--amber-bg);border:1.5px dashed var(--brown)}.mission-video{width:100%;height:clamp(150px,42vw,210px);background:#000;display:block;margin-bottom:8px}.req-empty{background:var(--amber-bg);border:2px solid var(--amber);border-radius:14px;padding:24px 20px;text-align:center;min-height:80px;margin-top:20px}.req-filled{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:20px}.req-filled ul{margin:0;padding-left:0;font-size:14px}.req-filled li{margin-left:26px;margin-bottom:10px;position:relative}.req-filled li::before{content:"✓";position:absolute;left:-26px;color:var(--amber);font-weight:800}footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-size:11.5px;color:#7a7468}body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;display:flex;justify-content:center;margin:0}</style></head><body><div class="page"><div class="brandbar"><span class="block-kicker">🌿 Matcha Catechin Sculpting Gua Sha Cream</span><span class="block-kicker">HEATING GUIDE</span></div><h2 class="block-title"><u>Hook – Apply – After</u> Flow</h2><div class="mission-grid"><div class="mission-card mission-card--hook"><span class="block-kicker">Hook</span><video class="mission-video" autoplay muted playsinline src=""></video><p style="margin:0;font-size:11.5px">Select an area to see the hook guide.</p></div><div class="mission-card mission-card--text"><span class="block-kicker">Apply</span><div style="width:100%;height:clamp(150px,42vw,210px);border:1.5px dashed var(--line);border-radius:8px;background:rgba(0,0,0,.03);display:flex;align-items:center;justify-content:center;margin-bottom:8px">Pick an area</div><p style="margin:0;font-size:11.5px">Apply a <strong>generous amount</strong> to the area.</p></div><div class="mission-card mission-card--text"><span class="block-kicker">After</span><div style="width:100%;height:clamp(150px,42vw,210px);border:1.5px dashed var(--line);border-radius:8px;background:rgba(0,0,0,.03);display:flex;align-items:center;justify-content:center;margin-bottom:8px">Pick an area</div><p style="margin:0;font-size:11.5px">Show the <strong>lighter, brighter</strong> result.</p></div></div><div id="reqCard" class="req-empty">Select an area below to see its requirements.</div><section style="margin-top:26px"><span class="block-kicker">Problem Area</span><h2 class="block-title">Click Your Problem Area</h2><div class="part-grid" id="partGrid"></div></section><footer>💌 <b>Ready to submit?</b> Send to <b>tiktokshop@thesiot.us</b></footer></div><script>const PARTS=[{id:"thighs",label:"Thighs",icon:"🌿"},{id:"belly",label:"Belly",icon:"🌿"},{id:"waistline",label:"Waistline",icon:"🌿"},{id:"upper-arms",label:"Upper Arms",icon:"🌿"}];const REQUIREMENTS={thighs:["Requirement 1","Requirement 2","Requirement 3"],belly:["Requirement 1","Requirement 2","Requirement 3"],waistline:["Requirement 1","Requirement 2","Requirement 3"],"upper-arms":["Requirement 1","Requirement 2","Requirement 3"]};const partGrid=document.getElementById("partGrid");const reqCard=document.getElementById("reqCard");let selectedPart=null;function renderParts(){partGrid.innerHTML="";PARTS.forEach(p=>{const btn=document.createElement("button");btn.type="button";btn.className="part-chip"+(selectedPart===p.id?" is-selected":"");btn.innerHTML=`<span style="width:28px;height:28px;border-radius:50%;background:var(--amber-bg);display:grid;place-items:center;font-size:15px">${p.icon}</span><b>${p.label}</b>`;btn.addEventListener("click",()=>{selectedPart=p.id;renderParts();renderReq()});partGrid.appendChild(btn)})}function renderReq(){if(!selectedPart){reqCard.innerHTML='<div class="req-empty">Select an area below to see its requirements.</div>';return}const p=PARTS.find(x=>x.id===selectedPart);const items=REQUIREMENTS[selectedPart]||[];reqCard.innerHTML=`<div class="req-filled"><span class="block-kicker">${p.label} Requirements</span><ul><li>${items[0]}</li><li>${items[1]}</li><li>${items[2]}</li></ul></div>`}renderParts();renderReq();</script></body></html>
-<!-- Updated at Thu Sep 10 16:29:11     2026 -->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<title>[SIOT] Matcha Catechin Sculpting Gua Sha Cream - HEATING</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg: #f1f8f5; --card: #ffffff; --ink: #1b5e20; --ink-soft: #558b2f;
+    --banner-bg: #c8e6c9; --banner-ink: #1b5e20; --brown: #2e7d32; --brown-strong: #1b5e20;
+    --amber: #81c784; --amber-bg: #e8f5e9; --gold: #7cb342; --line: #c8e6c9;
+    --danger-ink: #c62828; --shadow: 0 2px 10px rgba(46, 125, 50, 0.1);
+    --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", monospace;
+  }
+
+  * { box-sizing: border-box; } html, body { margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--font-ui); line-height: 1.55;
+    -webkit-font-smoothing: antialiased; display: flex; justify-content: center; }
+  .page { width: 100%; max-width: 760px; margin: 0 auto; padding: 24px 20px 60px; }
+  .brandbar { display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .brandbar-left { display: flex; align-items: center; gap: 12px; }
+  .block-kicker { font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--brown); text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .hero { padding: 40px 0 4px; margin-top: 30px; }
+  section.block { margin-top: 26px; }
+  .block-head { margin-bottom: 12px; }
+  .block-title { font-size: 18px; font-weight: 800; margin: 0; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--brown-strong); }
+  .block-note { font-size: 12.5px; color: var(--ink-soft); margin: 4px 0 0; }
+  .part-grid { display: flex; flex-wrap: wrap; gap: 7px; }
+  .part-chip { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+    flex: 1 1 88px; min-width: 88px; padding: 9px 6px; background: var(--card);
+    border: 1.5px solid var(--line); border-radius: 12px; cursor: pointer; text-align: center;
+    font-family: inherit; color: var(--ink); box-shadow: var(--shadow);
+    transition: border-color 0.15s ease, transform 0.1s ease; }
+  .part-chip:hover { border-color: var(--amber); }
+  .part-chip:active { transform: scale(0.97); }
+  .part-chip .icon { width: 28px; height: 28px; border-radius: 50%; background: var(--amber-bg);
+    display: grid; place-items: center; flex-shrink: 0; font-size: 15px; line-height: 1; }
+  .part-chip .txt b { display: block; font-size: 11.5px; font-weight: 700; line-height: 1.2; }
+  .part-chip.is-selected { border-color: var(--brown); background: var(--amber-bg); }
+  .part-chip.is-selected .icon { background: var(--brown); color: #fff; }
+  .part-chip.is-selected .txt b { color: var(--brown-strong); }
+  .mission-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 14px; }
+  .mission-card { position: relative; border-radius: 14px; padding: 12px 8px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .mission-card--hook { background: var(--amber-bg); border: 1.5px dashed var(--brown); }
+  .mission-card--text { background: var(--card); border: 1px solid var(--line); }
+  .mission-card:not(:last-child)::after { content: ""; position: absolute; right: -13px; top: 21px;
+    transform: translateY(-50%); z-index: 5; pointer-events: none; width: 26px; height: 26px;
+    border-radius: 50%; background-color: var(--brown);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M8 5l8 7-8 7' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat; background-position: 53% center; background-size: 11px 11px;
+    box-shadow: 0 2px 5px rgba(46, 125, 50, 0.3); }
+  .mission-step { height: 18px; display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 14px; font-weight: 700; letter-spacing: 0.06em;
+    color: var(--brown); text-transform: uppercase; margin-bottom: 8px; }
+  .mission-photo { width: 100%; height: clamp(150px, 42vw, 210px); border-radius: 8px; overflow: hidden;
+    margin-bottom: 8px; flex-shrink: 0; background: rgba(0, 0, 0, 0.03);
+    display: flex; align-items: center; justify-content: center; }
+  .photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+    border: 1.5px dashed var(--line); border-radius: 8px; background: rgba(0, 0, 0, 0.03);
+    font-size: 10.5px; color: var(--ink-soft); text-align: center; padding: 6px; }
+  .mission-video { width: 100%; height: clamp(150px, 42vw, 210px); border-radius: 8px; margin-bottom: 8px;
+    background: #000; display: block; flex-shrink: 0; object-fit: contain; }
+  .mission-caption { margin: 0; font-size: 11.5px; line-height: 1.4; color: var(--ink); }
+  .mission-caption strong { color: var(--brown-strong); font-weight: 800; }
+  .req-card { margin-top: 20px; }
+  .req-empty { display: flex; align-items: center; justify-content: center; gap: 10px;
+    color: var(--ink); font-size: 14px; font-weight: 600; background: var(--amber-bg);
+    border: 2px solid var(--amber); border-radius: 14px; padding: 24px 20px;
+    text-align: center; min-height: 80px; }
+  .req-filled { background: var(--card); border: 1.5px solid var(--line);
+    border-radius: 14px; padding: 16px 18px; }
+  .req-filled .req-part { font-size: 11.5px; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--brown); text-transform: uppercase; display: block; margin-bottom: 10px; }
+  .req-filled ul { margin: 0; padding-left: 0; font-size: 14px; color: var(--ink); line-height: 1.6; }
+  .req-filled li { margin-bottom: 10px; margin-left: 26px; position: relative; }
+  .req-filled li::before { content: "✓"; position: absolute; left: -26px; color: var(--amber);
+    font-weight: 800; font-size: 15px; }
+  footer.notes { margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--line);
+    font-size: 11.5px; color: var(--ink-soft); }
+  footer.notes b { color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="brandbar">
+    <div class="brandbar-left">
+      <span class="block-kicker">🌿 Matcha Catechin<br>Sculpting Gua Sha Cream</span>
+    </div>
+    <div class="block-kicker">HEATING GUIDE</div>
+  </div>
+  <div class="hero">
+    <div class="block-head">
+      <h2 class="block-title">HEATING GUIDE - <u>Hook – Apply – After</u> Flow</h2>
+    </div>
+  </div>
+  <div class="mission-grid">
+    <div class="mission-card mission-card--hook">
+      <span class="mission-step">Hook</span>
+      <video id="hookVideo" class="mission-video" autoplay muted playsinline src=""></video>
+      <p class="mission-caption" id="hookCaption">Select an area to see the hook guide.</p>
+    </div>
+    <div class="mission-card mission-card--text">
+      <span class="mission-step">Apply</span>
+      <div class="mission-photo" id="applyPhoto"><div class="photo-placeholder">Pick an area</div></div>
+      <p class="mission-caption">Apply a <strong>generous amount</strong> to the area.</p>
+    </div>
+    <div class="mission-card mission-card--text">
+      <span class="mission-step">After</span>
+      <div class="mission-photo" id="afterPhoto"><div class="photo-placeholder">Pick an area</div></div>
+      <p class="mission-caption">Show the <strong>lighter, brighter</strong> result.</p>
+    </div>
+  </div>
+  <div class="req-card" id="reqCard"><div class="req-empty">Select an area below to see its requirements.</div></div>
+  <section class="block">
+    <div class="block-head">
+      <span class="block-kicker">Problem Area</span>
+      <h2 class="block-title">Click Your Problem Area</h2>
+      <p class="block-note">Tap an area — the guide and requirements below will update to match.</p>
+    </div>
+    <div class="part-grid" id="partGrid"></div>
+  </section>
+  <footer class="notes">
+    💌 <b>Ready to submit?</b> Send as a <b>draft email</b> to <b>tiktokshop@thesiot.us</b>
+  </footer>
+</div>
+<script>
+  const PARTS = [
+    { id: "thighs", label: "Thighs", icon: "🌿" },
+    { id: "belly", label: "Belly", icon: "🌿" },
+    { id: "waistline", label: "Waistline", icon: "🌿" },
+    { id: "upper-arms", label: "Upper Arms", icon: "🌿" },
+  ];
+
+  const REQUIREMENTS = {
+    thighs: ["Requirement 1", "Requirement 2", "Requirement 3"],
+    belly: ["Requirement 1", "Requirement 2", "Requirement 3"],
+    waistline: ["Requirement 1", "Requirement 2", "Requirement 3"],
+    "upper-arms": ["Requirement 1", "Requirement 2", "Requirement 3"],
+  };
+
+  const partGrid = document.getElementById("partGrid");
+  const hookVideo = document.getElementById("hookVideo");
+  const applyPhoto = document.getElementById("applyPhoto");
+  const afterPhoto = document.getElementById("afterPhoto");
+  const reqCard = document.getElementById("reqCard");
+  let selectedPart = null;
+
+  function renderParts() {
+    partGrid.innerHTML = "";
+    PARTS.forEach((p) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "part-chip" + (selectedPart === p.id ? " is-selected" : "");
+      btn.innerHTML = `<span class="icon">${p.icon}</span><span class="txt"><b>${p.label}</b></span>`;
+      btn.addEventListener("click", () => {
+        selectedPart = p.id;
+        renderParts();
+        renderPhotos();
+        renderReq();
+        updateHookCaption();
+      });
+      partGrid.appendChild(btn);
+    });
+  }
+
+  function renderStagePhoto(el, stage) {
+    if (!selectedPart) {
+      el.innerHTML = `<div class="photo-placeholder">Pick an area</div>`;
+      return;
+    }
+    el.innerHTML = `<div class="photo-placeholder">Pick an area</div>`;
+  }
+
+  function renderHookVideo() {
+    if (!selectedPart) {
+      hookVideo.src = "";
+    }
+  }
+
+  function renderPhotos() {
+    renderHookVideo();
+    renderStagePhoto(applyPhoto, "apply");
+    renderStagePhoto(afterPhoto, "after");
+  }
+
+  function updateHookCaption() {
+    const hookCaption = document.getElementById("hookCaption");
+    if (!selectedPart) {
+      hookCaption.textContent = "Select an area to see the hook guide.";
+      return;
+    }
+    hookCaption.innerHTML = "<strong>Hook HARD</strong> with your " + PARTS.find(p => p.id === selectedPart).label.toLowerCase();
+  }
+
+  function renderReq() {
+    if (!selectedPart) {
+      reqCard.innerHTML = `<div class="req-empty">Select an area below to see its requirements.</div>`;
+      return;
+    }
+    const p = PARTS.find((x) => x.id === selectedPart);
+    const items = REQUIREMENTS[selectedPart] || [];
+    reqCard.innerHTML = `<div class="req-filled"><span class="req-part">${p.label} Requirements</span><ul><li>${items[0]}</li><li>${items[1]}</li><li>${items[2]}</li></ul></div>`;
+  }
+
+  renderParts();
+  renderPhotos();
+  renderReq();
+</script>
+</body></html>
