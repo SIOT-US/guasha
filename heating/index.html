@@ -64,8 +64,6 @@
   .photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
     border: 1.5px dashed var(--line); border-radius: 8px; background: rgba(0, 0, 0, 0.03);
     font-size: 10.5px; color: var(--ink-soft); text-align: center; padding: 6px; }
-  .mission-video { width: 100%; height: clamp(150px, 42vw, 210px); border-radius: 8px; margin-bottom: 8px;
-    background: #000; display: block; flex-shrink: 0; object-fit: contain; }
   .mission-caption { margin: 0; font-size: 11.5px; line-height: 1.4; color: var(--ink); }
   .mission-caption strong { color: var(--brown-strong); font-weight: 800; }
   .req-card { margin-top: 20px; }
@@ -79,6 +77,7 @@
     color: var(--brown); text-transform: uppercase; display: block; margin-bottom: 10px; }
   .req-filled ul { margin: 0; padding-left: 0; font-size: 14px; color: var(--ink); line-height: 1.6; }
   .req-filled li { margin-bottom: 10px; margin-left: 26px; position: relative; }
+  .req-filled li:first-child { color: #d32f2f; font-weight: 700; }
   .req-filled li::before { content: "✓"; position: absolute; left: -26px; color: var(--amber);
     font-weight: 800; font-size: 15px; }
   footer.notes { margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--line);
@@ -114,7 +113,7 @@
     <div class="mission-card mission-card--text">
       <span class="mission-step">After</span>
       <div class="mission-photo" id="afterPhoto"><div class="photo-placeholder">Pick an area</div></div>
-      <p class="mission-caption">Show the <strong>lighter, brighter</strong> result.</p>
+      <p class="mission-caption">Show the <strong>slimmed down and smooth</strong> result.</p>
     </div>
   </div>
   <div class="req-card" id="reqCard"><div class="req-empty">Select an area below to see its requirements.</div></div>
@@ -147,10 +146,26 @@
   ];
 
   const REQUIREMENTS = {
-    thighs: ["Requirement 1", "Requirement 2", "Requirement 3"],
-    belly: ["Requirement 1", "Requirement 2", "Requirement 3"],
-    waistline: ["Requirement 1", "Requirement 2", "Requirement 3"],
-    "upper-arms": ["Requirement 1", "Requirement 2", "Requirement 3"],
+    thighs: [
+      "⭐ Why it works: Matcha catechin + warming ingredients boost fat metabolism, increase blood flow, and flush out toxins",
+      "⚠️ Do NOT apply to face",
+      "⚠️ Non-compliance = No payment. Clear before/after difference required"
+    ],
+    belly: [
+      "⭐ Why it works: Matcha catechin + warming ingredients boost fat metabolism, increase blood flow, and flush out toxins",
+      "⚠️ Do NOT apply to face",
+      "⚠️ Non-compliance = No payment. Clear before/after difference required"
+    ],
+    waistline: [
+      "⭐ Why it works: Matcha catechin + warming ingredients boost fat metabolism, increase blood flow, and flush out toxins",
+      "⚠️ Do NOT apply to face",
+      "⚠️ Non-compliance = No payment. Clear before/after difference required"
+    ],
+    "upper-arms": [
+      "⭐ Why it works: Matcha catechin + warming ingredients boost fat metabolism, increase blood flow, and flush out toxins",
+      "⚠️ Do NOT apply to face",
+      "⚠️ Non-compliance = No payment. Clear before/after difference required"
+    ]
   };
 
   const partGrid = document.getElementById("partGrid");
@@ -189,7 +204,6 @@
     const assets = ASSETS[selectedPart];
     if (!assets) return;
 
-    // Hook - Handle both image and video
     hookPhoto.innerHTML = "";
     if (assets.hook.endsWith('.mp4') || assets.hook.endsWith('.webm')) {
       const video = document.createElement('video');
@@ -197,6 +211,8 @@
       video.style.width = '100%';
       video.style.height = '100%';
       video.style.objectFit = 'cover';
+      video.autoplay = true;
+      video.muted = true;
       video.controls = true;
       hookPhoto.appendChild(video);
     } else {
@@ -205,7 +221,6 @@
       hookPhoto.appendChild(img);
     }
 
-    // Apply
     applyPhoto.innerHTML = "";
     if (assets.apply.endsWith('.mp4') || assets.apply.endsWith('.webm')) {
       const video = document.createElement('video');
@@ -213,6 +228,8 @@
       video.style.width = '100%';
       video.style.height = '100%';
       video.style.objectFit = 'cover';
+      video.autoplay = true;
+      video.muted = true;
       video.controls = true;
       applyPhoto.appendChild(video);
     } else {
@@ -221,7 +238,6 @@
       applyPhoto.appendChild(img);
     }
 
-    // After
     afterPhoto.innerHTML = "";
     if (assets.after.endsWith('.mp4') || assets.after.endsWith('.webm')) {
       const video = document.createElement('video');
@@ -229,6 +245,8 @@
       video.style.width = '100%';
       video.style.height = '100%';
       video.style.objectFit = 'cover';
+      video.autoplay = true;
+      video.muted = true;
       video.controls = true;
       afterPhoto.appendChild(video);
     } else {
@@ -244,7 +262,7 @@
       hookCaption.textContent = "Select an area to see the hook guide.";
       return;
     }
-    hookCaption.innerHTML = "<strong>Hook HARD</strong> with your " + PARTS.find(p => p.id === selectedPart).label.toLowerCase();
+    hookCaption.innerHTML = "Show the DRIPPING SWEAT";
   }
 
   function renderReq() {
