@@ -157,16 +157,19 @@
 
   const REQUIREMENTS = {
     thighs: [
+      "⭐ Include a <span style='color: #d32f2f;'>before photo</span> in the Hook that clearly shows <span style='color: #d32f2f;'>cellulite</span>",
       "⭐ <span style='color: #d32f2f;'>Why it works</span>: Matcha catechin + warming ingredients boost fat metabolism, increase blood flow, and flush out toxins",
       "⚠️ Do NOT apply to face",
       "⚠️ Clear before/after difference required"
     ],
     arms: [
+      "⭐ Include a <span style='color: #d32f2f;'>before photo</span> in the Hook that clearly shows <span style='color: #d32f2f;'>cellulite</span>",
       "⭐ <span style='color: #d32f2f;'>Why it works</span>: Matcha catechin + warming ingredients boost fat metabolism, increase blood flow, and flush out toxins",
       "⚠️ Do NOT apply to face",
       "⚠️ Clear before/after difference required"
     ],
     hips: [
+      "⭐ Include a <span style='color: #d32f2f;'>before photo</span> in the Hook that clearly shows <span style='color: #d32f2f;'>cellulite</span>",
       "⭐ <span style='color: #d32f2f;'>Why it works</span>: Matcha catechin + warming ingredients boost fat metabolism, increase blood flow, and flush out toxins",
       "⚠️ Do NOT apply to face",
       "⚠️ Clear before/after difference required"
@@ -279,7 +282,8 @@
     }
     const p = PARTS.find((x) => x.id === selectedPart);
     const items = REQUIREMENTS[selectedPart] || [];
-    reqCard.innerHTML = `<div class="req-filled"><span class="req-part">${p.label} Requirements</span><ul><li>${items[0]}</li><li>${items[1]}</li><li>${items[2]}</li></ul></div>`;
+    const itemsHtml = items.map((item) => `<li>${item}</li>`).join("");
+    reqCard.innerHTML = `<div class="req-filled"><span class="req-part">${p.label} Requirements</span><ul>${itemsHtml}</ul></div>`;
   }
 
   renderParts();
