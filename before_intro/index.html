@@ -65,7 +65,9 @@
     font-size: 10.5px; color: var(--ink-soft); text-align: center; padding: 6px; }
   .mission-caption { margin: 0; font-size: 11.5px; line-height: 1.4; color: var(--ink); }
   .mission-caption strong { color: var(--brown-strong); font-weight: 800; }
-  .ref-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-bottom: 8px; }
+  .ref-tabs { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px;
+    min-height: 22px; margin-bottom: 8px; }
+  .mission-card--text .mission-photo { margin-bottom: 16px; }
   .ref-tab { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.02em;
     color: var(--brown); background: var(--card); border: 1.5px solid var(--line); border-radius: 999px;
     padding: 3px 9px; cursor: pointer; }
@@ -121,11 +123,13 @@
     </div>
     <div class="mission-card mission-card--text">
       <span class="mission-step">Apply</span>
+      <div class="ref-tabs"></div>
       <div class="mission-photo" id="applyPhoto"><div class="photo-placeholder">Pick an area</div></div>
       <p class="mission-caption">Apply a <strong>generous amount</strong> to the area.</p>
     </div>
     <div class="mission-card mission-card--text">
       <span class="mission-step">After</span>
+      <div class="ref-tabs"></div>
       <div class="mission-photo" id="afterPhoto"><div class="photo-placeholder">Pick an area</div></div>
       <p class="mission-caption">Show the <strong>slimmed and smooth</strong> result.</p>
     </div>
@@ -140,9 +144,9 @@
 
 <script>
   const ASSETS = {
-    thighs: { hook: ['assets/thighs-hook.png', null, null], apply: 'assets/thighs-apply.mp4', after: 'assets/thighs-after.png' },
-    arms: { hook: ['assets/upper-arms-hook.png'], apply: 'assets/upper-arms-apply.mp4', after: 'assets/upper-arms-after.png' },
-    hips: { hook: [null, null], apply: null, after: null }
+    thighs: { hook: ['assets/thighs-hook-1.mp4', 'assets/thighs-hook-2.mp4', 'assets/thighs-hook-3.mp4'], apply: 'assets/thighs-apply.mp4', after: 'assets/thighs-after.png' },
+    arms: { hook: ['assets/arms-hook.mp4'], apply: 'assets/upper-arms-apply.mp4', after: 'assets/upper-arms-after.png' },
+    hips: { hook: ['assets/hips-hook-1.mp4', 'assets/hips-hook-2.mp4'], apply: null, after: null }
   };
 
   const PARTS = [
