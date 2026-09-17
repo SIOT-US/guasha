@@ -65,6 +65,12 @@
     font-size: 10.5px; color: var(--ink-soft); text-align: center; padding: 6px; }
   .mission-caption { margin: 0; font-size: 11.5px; line-height: 1.4; color: var(--ink); }
   .mission-caption strong { color: var(--brown-strong); font-weight: 800; }
+  .ref-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-bottom: 8px; }
+  .ref-tab { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.02em;
+    color: var(--brown); background: var(--card); border: 1.5px solid var(--line); border-radius: 999px;
+    padding: 3px 9px; cursor: pointer; }
+  .ref-tab:hover { border-color: var(--amber); }
+  .ref-tab.is-active { background: var(--brown); border-color: var(--brown); color: #fff; }
   .req-card { margin-top: 20px; }
   .req-empty { display: flex; align-items: center; justify-content: center; gap: 10px;
     color: var(--ink); font-size: 14px; font-weight: 600; background: var(--amber-bg);
@@ -109,6 +115,7 @@
   <div class="mission-grid">
     <div class="mission-card mission-card--hook">
       <span class="mission-step">Hook</span>
+      <div class="ref-tabs" id="hookRefs"></div>
       <div class="mission-photo" id="hookPhoto"><div class="photo-placeholder">Pick an area</div></div>
       <p class="mission-caption" id="hookCaption">Select an area to see the hook guide.</p>
     </div>
@@ -133,17 +140,15 @@
 
 <script>
   const ASSETS = {
-    thighs: { hook: 'assets/thighs-hook.png', apply: 'assets/thighs-apply.mp4', after: 'assets/thighs-after.png' },
-    belly: { hook: 'assets/belly-hook.mp4', apply: 'assets/belly-apply.mp4', after: 'assets/belly-after.png' },
-    waistline: { hook: 'assets/waistline-hook.mp4', apply: 'assets/waistline-apply.mp4', after: 'assets/waistline-after.png' },
-    'upper-arms': { hook: 'assets/upper-arms-hook.png', apply: 'assets/upper-arms-apply.mp4', after: 'assets/upper-arms-after.png' }
+    thighs: { hook: ['assets/thighs-hook.png', null, null], apply: 'assets/thighs-apply.mp4', after: 'assets/thighs-after.png' },
+    arms: { hook: ['assets/upper-arms-hook.png'], apply: 'assets/upper-arms-apply.mp4', after: 'assets/upper-arms-after.png' },
+    hips: { hook: [null, null], apply: null, after: null }
   };
 
   const PARTS = [
     { id: "thighs", label: "Thighs" },
-    { id: "belly", label: "Belly" },
-    { id: "waistline", label: "Waistline" },
-    { id: "upper-arms", label: "Upper Arms" },
+    { id: "arms", label: "Arms" },
+    { id: "hips", label: "Hips" },
   ];
 
   const REQUIREMENTS = {
@@ -152,17 +157,12 @@
       "⚠️ Do NOT apply to face",
       "⚠️ Clear before/after difference required"
     ],
-    belly: [
+    arms: [
       "⭐ <span style='color: #d32f2f;'>Why it works</span>: Matcha catechin + warming ingredients boost fat metabolism, increase blood flow, and flush out toxins",
       "⚠️ Do NOT apply to face",
       "⚠️ Clear before/after difference required"
     ],
-    waistline: [
-      "⭐ <span style='color: #d32f2f;'>Why it works</span>: Matcha catechin + warming ingredients boost fat metabolism, increase blood flow, and flush out toxins",
-      "⚠️ Do NOT apply to face",
-      "⚠️ Clear before/after difference required"
-    ],
-    "upper-arms": [
+    hips: [
       "⭐ <span style='color: #d32f2f;'>Why it works</span>: Matcha catechin + warming ingredients boost fat metabolism, increase blood flow, and flush out toxins",
       "⚠️ Do NOT apply to face",
       "⚠️ Clear before/after difference required"
@@ -170,11 +170,13 @@
   };
 
   const partGrid = document.getElementById("partGrid");
+  const hookRefs = document.getElementById("hookRefs");
   const hookPhoto = document.getElementById("hookPhoto");
   const applyPhoto = document.getElementById("applyPhoto");
   const afterPhoto = document.getElementById("afterPhoto");
   const reqCard = document.getElementById("reqCard");
   let selectedPart = null;
+  let hookRefIndex = 0;
 
   function renderParts() {
     partGrid.innerHTML = "";
@@ -185,12 +187,58 @@
       btn.innerHTML = `<span class="txt"><b>${p.label}</b></span>`;
       btn.addEventListener("click", () => {
         selectedPart = p.id;
+        hookRefIndex = 0;
         renderParts();
+        renderHookRefs();
         renderPhotos();
         renderReq();
         updateHookCaption();
       });
       partGrid.appendChild(btn);
+    });
+  }
+
+  function renderSlot(el, src) {
+    el.innerHTML = "";
+    if (!src) {
+      el.innerHTML = `<div class="photo-placeholder">사진 준비중</div>`;
+      return;
+    }
+    if (src.endsWith('.mp4') || src.endsWith('.webm')) {
+      const video = document.createElement('video');
+      video.src = src;
+      video.style.width = '100%';
+      video.style.height = '100%';
+      video.style.objectFit = 'cover';
+      video.autoplay = true;
+      video.muted = true;
+      video.controls = true;
+      el.appendChild(video);
+    } else {
+      const img = document.createElement('img');
+      img.src = src;
+      el.appendChild(img);
+    }
+  }
+
+  function renderHookRefs() {
+    hookRefs.innerHTML = "";
+    if (!selectedPart) return;
+    const assets = ASSETS[selectedPart];
+    if (!assets) return;
+    const hooks = assets.hook;
+    if (!Array.isArray(hooks) || hooks.length <= 1) return;
+    hooks.forEach((_, i) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "ref-tab" + (hookRefIndex === i ? " is-active" : "");
+      btn.textContent = "Ref " + (i + 1);
+      btn.addEventListener("click", () => {
+        hookRefIndex = i;
+        renderHookRefs();
+        renderPhotos();
+      });
+      hookRefs.appendChild(btn);
     });
   }
 
@@ -205,56 +253,10 @@
     const assets = ASSETS[selectedPart];
     if (!assets) return;
 
-    hookPhoto.innerHTML = "";
-    if (assets.hook.endsWith('.mp4') || assets.hook.endsWith('.webm')) {
-      const video = document.createElement('video');
-      video.src = assets.hook;
-      video.style.width = '100%';
-      video.style.height = '100%';
-      video.style.objectFit = 'cover';
-      video.autoplay = true;
-      video.muted = true;
-      video.controls = true;
-      hookPhoto.appendChild(video);
-    } else {
-      const img = document.createElement('img');
-      img.src = assets.hook;
-      hookPhoto.appendChild(img);
-    }
-
-    applyPhoto.innerHTML = "";
-    if (assets.apply.endsWith('.mp4') || assets.apply.endsWith('.webm')) {
-      const video = document.createElement('video');
-      video.src = assets.apply;
-      video.style.width = '100%';
-      video.style.height = '100%';
-      video.style.objectFit = 'cover';
-      video.autoplay = true;
-      video.muted = true;
-      video.controls = true;
-      applyPhoto.appendChild(video);
-    } else {
-      const img = document.createElement('img');
-      img.src = assets.apply;
-      applyPhoto.appendChild(img);
-    }
-
-    afterPhoto.innerHTML = "";
-    if (assets.after.endsWith('.mp4') || assets.after.endsWith('.webm')) {
-      const video = document.createElement('video');
-      video.src = assets.after;
-      video.style.width = '100%';
-      video.style.height = '100%';
-      video.style.objectFit = 'cover';
-      video.autoplay = true;
-      video.muted = true;
-      video.controls = true;
-      afterPhoto.appendChild(video);
-    } else {
-      const img = document.createElement('img');
-      img.src = assets.after;
-      afterPhoto.appendChild(img);
-    }
+    const hooks = Array.isArray(assets.hook) ? assets.hook : [assets.hook];
+    renderSlot(hookPhoto, hooks[hookRefIndex] || null);
+    renderSlot(applyPhoto, assets.apply);
+    renderSlot(afterPhoto, assets.after);
   }
 
   function updateHookCaption() {
@@ -277,6 +279,7 @@
   }
 
   renderParts();
+  renderHookRefs();
   renderPhotos();
   renderReq();
 </script>
